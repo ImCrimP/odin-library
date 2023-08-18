@@ -5,6 +5,7 @@ const authorInput = document.querySelector("#authorInput");
 const readInput = document.querySelector("#readInput");
 const submit = document.querySelector("#submitInput");
 let library = document.querySelector("#books");
+let inLibrary = false;
 /*
 let remove = document.createElement("button");
 remove.classList.add("bookBtn");
@@ -42,6 +43,7 @@ function addBookToLibrary() {
   form.style.visibility = "visible";
 
   submit.addEventListener("click", () => {
+    inLibrary = false;
     const book = document.createElement("div");
     const title = document.createElement("div");
     const author = document.createElement("div");
@@ -62,37 +64,59 @@ function addBookToLibrary() {
       readInput.checked
     );
 
-    if (!isInLibrary(newBook)) {
+    bookIndex = myLibrary.indexOf(newBook.title);
+    console.log(bookIndex);
+
+    for (let i = 0; i < myLibrary.length; i++) {
+      if (myLibrary[i].title == newBook.title) {
+        inLibrary = true;
+      }
+    }
+    if (!inLibrary) {
       myLibrary.push(newBook);
+
+      console.log(myLibrary);
+      console.log(newBook.valueOf());
+
+      title.textContent = newBook.title;
+      author.textContent = newBook.author;
+      hasRead = newBook.hasRead;
+
+      if (hasRead) {
+        read.textContent = "Read";
+        read.style.backgroundColor = "lightgreen";
+      } else {
+        read.textContent = "Not Read";
+        read.style.backgroundColor = "lightcoral";
+      }
+
+      book.appendChild(title);
+      book.appendChild(author);
+      book.appendChild(read);
+      book.appendChild(remove);
+
+      library.appendChild(book);
     }
-
-    console.log(myLibrary);
-    console.log(newBook.valueOf());
-
-    title.textContent = newBook.title;
-    author.textContent = newBook.author;
-    hasRead = newBook.read;
-
-    if (hasRead) {
-      read.textContent = "Read";
-    } else {
-      read.textContent = "Not Read";
-    }
-
-    book.appendChild(title);
-    book.appendChild(author);
-    book.appendChild(read);
-    book.appendChild(remove);
-
-    library.appendChild(book);
 
     form.style.visibility = "hidden";
     remove.addEventListener("click", () => {
       book.remove();
     });
+
+    read.addEventListener("click", () => {
+      if (hasRead) {
+        hasRead = false;
+        read.style.backgroundColor = "lightcoral";
+        read.textContent = "Not Read";
+      } else {
+        hasRead = true;
+        read.style.backgroundColor = "lightgreen";
+        read.textContent = "Read";
+      }
+    });
   });
 }
 
 function isInLibrary(newBook) {
-  return myLibrary.includes(newBook.title);
+  return myLibrary.includes(newBook);
 }
