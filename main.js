@@ -4,13 +4,16 @@ const titleInput = document.querySelector("#titleInput");
 const authorInput = document.querySelector("#authorInput");
 const readInput = document.querySelector("#readInput");
 const submit = document.querySelector("#submitInput");
-const library = document.querySelector("#books");
+let library = document.querySelector("#books");
+/*
+let remove = document.createElement("button");
+remove.classList.add("bookBtn");
+let book = document.createElement("div");
 
-const book = document.createElement("div");
 const title = document.createElement("div");
 const author = document.createElement("div");
 const read = document.createElement("button");
-const remove = document.createElement("button");
+
 
 book.setAttribute("class", "book");
 title.setAttribute("class", "content");
@@ -18,32 +21,52 @@ author.setAttribute("class", "content");
 let hasRead = false;
 read.setAttribute("class", "bookBtn");
 remove.setAttribute("class", "bookBtn");
+remove.textContent = "Remove";
+*/
 
 let myLibrary = [];
 
-addBook.addEventListener("click", () => {
-  addBookToLibrary();
+document.addEventListener("DOMContentLoaded", () => {
+  addBook.addEventListener("click", () => {
+    addBookToLibrary();
+  });
 });
 
-removeFromLibrary();
-
-function Book(title, author, read) {
+function Book(title, author, hasRead) {
   this.title = title;
   this.author = author;
-  this.read = read;
+  this.hasRead = hasRead;
 }
 
 function addBookToLibrary() {
   form.style.visibility = "visible";
 
-  remove.textContent = "Remove";
-
   submit.addEventListener("click", () => {
+    const book = document.createElement("div");
+    const title = document.createElement("div");
+    const author = document.createElement("div");
+    const read = document.createElement("button");
+    const remove = document.createElement("button");
+
+    book.classList.add("book");
+    title.classList.add("content");
+    author.classList.add("content");
+    let hasRead = false;
+    read.classList.add("bookBtn");
+    remove.classList.add("bookBtn");
+    remove.textContent = "Remove";
+
     let newBook = new Book(
       titleInput.value,
       authorInput.value,
       readInput.checked
     );
+
+    if (!isInLibrary(newBook)) {
+      myLibrary.push(newBook);
+    }
+
+    console.log(myLibrary);
     console.log(newBook.valueOf());
 
     title.textContent = newBook.title;
@@ -56,21 +79,20 @@ function addBookToLibrary() {
       read.textContent = "Not Read";
     }
 
-    book.append(title);
-    book.append(author);
-    book.append(read);
-    book.append(remove);
+    book.appendChild(title);
+    book.appendChild(author);
+    book.appendChild(read);
+    book.appendChild(remove);
 
-    library.append(book);
-    myLibrary.push(book);
+    library.appendChild(book);
 
     form.style.visibility = "hidden";
+    remove.addEventListener("click", () => {
+      book.remove();
+    });
   });
 }
 
-function removeFromLibrary() {
-  remove.addEventListener("click", () => {
-    book.remove();
-    myLibrary.pop();
-  });
+function isInLibrary(newBook) {
+  return myLibrary.includes(newBook.title);
 }
