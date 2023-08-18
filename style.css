@@ -34,6 +34,7 @@ form {
   border-radius: var(--roundEdge);
   gap: 20px;
   padding: 25px;
+  border: 1px solid black;
 }
 
 .txt {
@@ -127,4 +128,8 @@ button:hover {
   font-size: 28px;
   width: 100%;
   border-radius: var(--roundEdge);
+}
+
+.content {
+  font-size: 28px;
 }
