@@ -101,13 +101,10 @@ button:hover {
   display: grid;
   gap: 35px;
   padding: 35px;
-  /*grid-template-rows: repeat(3, 1fr);*/
-
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   width: clamp(600px, 80vw, 1400px);
   height: 100%;
   display: grid;
-
   place-items: center;
 }
 

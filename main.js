@@ -6,24 +6,6 @@ const readInput = document.querySelector("#readInput");
 const submit = document.querySelector("#submitInput");
 let library = document.querySelector("#books");
 let inLibrary = false;
-/*
-let remove = document.createElement("button");
-remove.classList.add("bookBtn");
-let book = document.createElement("div");
-
-const title = document.createElement("div");
-const author = document.createElement("div");
-const read = document.createElement("button");
-
-
-book.setAttribute("class", "book");
-title.setAttribute("class", "content");
-author.setAttribute("class", "content");
-let hasRead = false;
-read.setAttribute("class", "bookBtn");
-remove.setAttribute("class", "bookBtn");
-remove.textContent = "Remove";
-*/
 
 let myLibrary = [];
 
@@ -101,6 +83,13 @@ function addBookToLibrary() {
     form.style.visibility = "hidden";
     remove.addEventListener("click", () => {
       book.remove();
+      for (let i = 0; i < myLibrary.length; i++) {
+        console.log(myLibrary[i].title);
+        console.log(title.textContent);
+        if (myLibrary[i].title == title.textContent) {
+          myLibrary.splice(i, 1);
+        }
+      }
     });
 
     read.addEventListener("click", () => {
