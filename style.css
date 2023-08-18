@@ -7,6 +7,9 @@ body {
     "Lucida Sans", Arial, sans-serif;
 }
 
+:root {
+}
+
 #header {
   height: 150px;
   box-shadow: 0px 15px 10px -15px #111;
@@ -14,6 +17,49 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+form {
+  visibility: hidden;
+  position: absolute;
+  height: 500px;
+  width: 400px;
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 15px;
+  gap: 20px;
+  padding: 25px;
+}
+
+.txt {
+  width: 100%;
+  border-radius: 15px;
+  font-size: 26px;
+  padding: 10px;
+}
+
+#formHeader {
+  font-size: 45px;
+}
+
+#readInput {
+  width: 20px;
+  height: 20px;
+}
+
+#readlb {
+  font-size: 32px;
+}
+
+#submitInput {
+  width: 100%;
+  font-size: 32px;
+  padding: 10px;
+  border-radius: 15px;
+  background-color: lightgreen;
 }
 
 #main {
